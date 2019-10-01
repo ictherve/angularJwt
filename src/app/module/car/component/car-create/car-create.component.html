@@ -1,0 +1,36 @@
+<div class="carcreate" fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card class="mat-card-signup">
+    <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+      <mat-card-header fxLayoutAlign="center center">
+        <mat-card-title>Create a Car</mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayout="column wrap">
+        <mat-form-field>
+          <input id="brand" name="brand" type="text" matInput placeholder="brand" formControlName="brand" />
+          <mat-hint align="end">No less than 4 characters</mat-hint>
+          <mat-error *ngIf="hasError('brand', 'required')">Entrer une marque</mat-error>
+          <mat-error *ngIf="hasError('brand', 'minlength')">Minimum 4 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input id="model" name="model" type="model" matInput placeholder="model" formControlName="model" />
+          <mat-hint align="end">No less than 12 characters</mat-hint>
+          <mat-error *ngIf="hasError('model', 'required')">Entrer un model</mat-error>
+          <mat-error *ngIf="hasError('model', 'minlength')">Minimum 12 characters</mat-error>
+        </mat-form-field>
+          <mat-checkbox
+                        formControlName="sold">
+          </mat-checkbox>
+        <mat-form-field>
+          <input id="creation" formControlName="creation" name="creation" matInput [matDatepicker]="picker"
+                 placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="hasError('creation', 'required')">Entrer une date de creation</mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions fxLayoutAlign="center center">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!carForm.valid">Submit</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

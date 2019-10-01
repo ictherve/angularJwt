@@ -1,0 +1,47 @@
+<div class="signup" fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card class="mat-card-signup">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+      <mat-card-header fxLayoutAlign="center center">
+        <mat-card-title>SignUp</mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayout="column wrap">
+        <mat-form-field>
+          <input id="username" name="username" type="text" matInput placeholder="Username" formControlName="username" />
+          <mat-hint align="end">No less than 4 characters</mat-hint>
+          <mat-error *ngIf="hasError('username', 'required')">Entrer un pseudo</mat-error>
+          <mat-error *ngIf="hasError('username', 'minlength')">Minimum 4 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input id="email" name="email" type="email" matInput placeholder="Email" formControlName="email" />
+          <mat-hint align="end">No less than 12 characters</mat-hint>
+          <mat-error *ngIf="hasError('email', 'required')">Entrer un email</mat-error>
+          <mat-error *ngIf="hasError('email', 'minlength')">Minimum 12 characters</mat-error>
+          <mat-error *ngIf="hasError('email', 'email')">Entrer un email valide</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input id="password" name="password" type="password" matInput placeholder="Password" formControlName="password" />
+          <mat-hint align="end">No less than 4 characters</mat-hint>
+          <mat-error *ngIf="hasError('password', 'required')">Entrer un mot de passe</mat-error>
+          <mat-error *ngIf="hasError('password', 'minlength')">Minimum 4 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input id="passwordConfirm" name="passwordConfirm" type="password" matInput placeholder="PasswordConfirm"
+                 formControlName="passwordConfirm" />
+          <mat-hint align="end">No less than 4 characters</mat-hint>
+          <mat-error *ngIf="hasError('passwordConfirm', 'required')">Entrer le mot de passe de confirmation</mat-error>
+          <mat-error *ngIf="hasError('passwordConfirm', 'minlength')">Minimum 4 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input id="birthday" formControlName="birthday" name="birthday" matInput [matDatepicker]="picker"
+                 placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="hasError('birthday', 'required')">Entrer une date de naissance</mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions fxLayoutAlign="center center">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!signUpForm.valid">Submit</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>
